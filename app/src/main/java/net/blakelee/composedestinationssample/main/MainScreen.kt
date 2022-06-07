@@ -15,13 +15,6 @@ fun MainScreen() {
 
     Scaffold(bottomBar = { BottomBar(navController) }) { paddingValues ->
 
-//        val currentDestination = navController.currentDestinationAsState().value
-//        if (currentDestination is DeepLinkScreenDestination && !navController.isRouteOnBackStack(ScreenCDestination)) {
-//            val args = currentDestination.argsFrom(navController.currentBackStackEntry!!)
-//            navController.navigate(ScreenCDestination)
-//            navController.navigate(DeepLinkScreenDestination.invoke(args))
-//        }
-
         DestinationsNavHost(
             navGraph = NavGraphs.main,
             navController = navController,

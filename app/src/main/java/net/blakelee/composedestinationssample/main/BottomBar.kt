@@ -9,10 +9,10 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.ramcosta.composedestinations.navigation.navigate
 import com.ramcosta.composedestinations.navigation.popBackStack
 import com.ramcosta.composedestinations.navigation.popUpTo
 import com.ramcosta.composedestinations.utils.isRouteOnBackStack
+import net.blakelee.composedestinationssample.main.screens.NavGraph
 import net.blakelee.composedestinationssample.main.screens.NavGraphs
 import net.blakelee.composedestinationssample.main.screens.appDestination
 import net.blakelee.composedestinationssample.ui.theme.darkTan
@@ -22,23 +22,27 @@ import net.blakelee.composedestinationssample.ui.theme.tan
 fun BottomBar(navController: NavHostController) {
 
     NavigationBar(contentColor = darkTan, containerColor = tan) {
-        BottomBarItem.values().forEachIndexed { index, destination ->
-            val isCurrentDestOnBackStack = navController.isRouteOnBackStack(destination.direction)
+        BottomBarItem.values().forEachIndexed { index, item ->
+            val isCurrentDestOnBackStack = navController.isRouteOnBackStack(item.route)
             val currentDestination = navController.currentBackStackEntryAsState().value
-            val isSelected = currentDestination?.appDestination() == destination.direction
+            val isSelected = currentDestination?.appDestination() == item.route ||
+                    (item.route as? NavGraph)
+                        ?.destinations
+                        ?.contains(currentDestination?.appDestination()) ?: false
+
 
             NavigationBarItem(
-                selected = currentDestination?.appDestination() == destination.direction,
+                selected = isSelected,
                 onClick = {
 
                     if (isCurrentDestOnBackStack) {
                         // When we click again on a bottom bar item and it was already selected
                         // we want to pop the back stack until the initial destination of this bottom bar item
-                        navController.popBackStack(destination.direction, false)
+                        navController.popBackStack(item.route, false)
                         return@NavigationBarItem
                     }
 
-                    navController.navigate(destination.direction) {
+                    navController.navigate(item.route.route) {
                         // Pop up to the root of the graph to
                         // avoid building up a large stack of destinations
                         // on the back stack as users select items
@@ -61,12 +65,12 @@ fun BottomBar(navController: NavHostController) {
                         }
                     }) {
                         Icon(
-                            painterResource(destination.icon),
-                            stringResource(destination.label)
+                            painterResource(item.icon),
+                            stringResource(item.label)
                         )
                     }
                 },
-                label = { Text(stringResource(destination.label)) },
+                label = { Text(stringResource(item.label)) },
                 colors = mainNavigationBarItemColors()
             )
         }
