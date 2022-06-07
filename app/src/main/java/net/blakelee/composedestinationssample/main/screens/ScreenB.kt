@@ -13,10 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.navigate
 import net.blakelee.composedestinationssample.main.MainNavGraph
 import net.blakelee.composedestinationssample.main.screens.destinations.DeepLinkScreenDestination
-import net.blakelee.composedestinationssample.main.screens.destinations.ScreenCDestination
 
 @MainNavGraph
 @Destination
@@ -27,7 +25,6 @@ fun ScreenB(navController: NavController) {
         Column(Modifier.padding(16.dp)) {
             Button(
                 onClick = {
-                    navController.navigate(ScreenCDestination.invoke())
                     navController.navigate(DeepLinkScreenDestination.invoke(1337).route)
                 },
                 modifier = Modifier.wrapContentHeight()
