@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.ramcosta.composedestinations.DestinationsNavHost
 import net.blakelee.composedestinationssample.main.screens.NavGraphs
@@ -14,13 +13,10 @@ fun MainScreen() {
     val navController = rememberNavController()
 
     Scaffold(bottomBar = { BottomBar(navController) }) { paddingValues ->
-
         DestinationsNavHost(
             navGraph = NavGraphs.main,
             navController = navController,
-            modifier = Modifier
-                .padding(paddingValues)
-                .padding(16.dp),
+            modifier = Modifier.padding(paddingValues),
         )
     }
 }

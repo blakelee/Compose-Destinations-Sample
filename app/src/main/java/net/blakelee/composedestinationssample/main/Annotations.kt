@@ -1,7 +1,9 @@
-package net.blakelee.composedestinationssample.main.screens.nestedscreens
+package net.blakelee.composedestinationssample.main
 
 import com.ramcosta.composedestinations.annotation.NavGraph
-import net.blakelee.composedestinationssample.main.MainNavGraph
+
+@NavGraph(default = true)
+annotation class MainNavGraph(val start: Boolean = false)
 
 @NavGraph
 @MainNavGraph

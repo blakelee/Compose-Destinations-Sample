@@ -6,16 +6,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavController
 import com.ramcosta.composedestinations.annotation.DeepLink
 import com.ramcosta.composedestinations.annotation.Destination
-
-const val deepLinkPattern = "https://example.com/{id}"
+import net.blakelee.composedestinationssample.main.SampleNavGraph
 
 @SampleNavGraph
-@Destination(deepLinks = [DeepLink(uriPattern = deepLinkPattern)])
+@Destination(deepLinks = [DeepLink(uriPattern = "https://example.com/{id}")])
 @Composable
-fun DeepLinkScreen(id: Int, navController: NavController) {
+fun DeepLinkScreen(id: Int) {
 
     Surface(
         color = Color.Red,
