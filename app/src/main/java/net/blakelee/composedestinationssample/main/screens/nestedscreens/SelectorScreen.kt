@@ -16,6 +16,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.navigate
 import net.blakelee.composedestinationssample.main.SampleNavGraph
 import net.blakelee.composedestinationssample.main.screens.destinations.DeepLinkScreenDestination
+import net.blakelee.composedestinationssample.main.screens.destinations.DisjointScreenDestination
 import net.blakelee.composedestinationssample.main.screens.destinations.PassDataScreenDestination
 
 @SampleNavGraph(start = true)
@@ -49,6 +50,12 @@ fun SelectorScreen(navController: NavController) {
                 navController.navigate(PassDataScreenDestination.invoke(passValue.toInt()))
             }) {
                 Text("Pass Data")
+            }
+
+            Button(onClick = {
+                navController.navigate(DisjointScreenDestination)
+            }) {
+                Text("Disjoint Graph Screen")
             }
 
         }

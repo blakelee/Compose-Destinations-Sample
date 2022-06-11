@@ -13,3 +13,5 @@ val Pink40 = Color(0xFF7D5260)
 val darkTan = Color(0xFFE7E5C0)
 val tan = Color(0xFFF3F1E0)
 val offWhite = Color(0xFFFEFDF3)
+
+val gold = Color(0xFF968822)
