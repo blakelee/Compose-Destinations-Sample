@@ -1,8 +1,8 @@
 package net.blakelee.composedestinationssample.main
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -23,8 +23,8 @@ fun MainScreen() {
     Scaffold(bottomBar = {
         AnimatedVisibility(
             visible = currentDestination in (NavGraphs.main.allDestinations),
-            enter = slideInVertically { it },
-            exit = slideOutVertically { it }
+            enter = fadeIn(),
+            exit = fadeOut()
         ) { BottomBar(navController) }
     }) { paddingValues ->
         DestinationsNavHost(
